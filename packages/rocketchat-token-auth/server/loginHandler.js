@@ -1,7 +1,6 @@
 /* eslint new-cap: [2, {"capIsNewExceptions": ["SHA256"]}] */
 
 const logger = new Logger('TOKENAUTH', {});
-const crypto = Npm.require('crypto');
 
 Accounts.registerLoginHandler('token', function(loginRequest) {
 	if (!loginRequest.token) {
@@ -15,10 +14,10 @@ Accounts.registerLoginHandler('token', function(loginRequest) {
 	}
 
 	const key = RocketChat.settings.get('Token_Key');
-	const hash = crypto.createHash('sha256').update(loginRequest.username + key).digest('hex');
+	const hash = SHA256(loginRequest.username + key);
 
 	if (hash != loginRequest.hash) {
-		throw new Error('Hash not invalid for Token authentication');
+		throw new Error('Hash invalid for Token authentication');
 	}
 
 	const user = Meteor.users.findOne(userQuery = {
