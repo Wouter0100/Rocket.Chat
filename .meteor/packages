@@ -109,6 +109,7 @@ rocketchat:spotify
 rocketchat:statistics
 rocketchat:streamer
 rocketchat:theme
+rocketchat:token-auth
 rocketchat:tooltip
 rocketchat:tutum
 rocketchat:ui
